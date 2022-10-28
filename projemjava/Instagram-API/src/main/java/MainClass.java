@@ -41,76 +41,76 @@ public class MainClass {
 
 	public static void main(String[] args) {
 
-		// 1- biografi bilgisini göster
-		// 2- takipçi sayını göster
+		// 1- biografi bilgisini gÃ¶ster
+		// 2- takipÃ§i sayÃ½nÃ½ gÃ¶ster
 		// 3- profil resminin linklini versin
-		// 4- takipçi listesini getirsin
-		// 5- takip ettiğim kişileri getir
-		// 6- uygulamyı sonlandır çıkış
+		// 4- takipÃ§i listesini getirsin
+		// 5- takip ettiÃ°im kiÃ¾ileri getir
+		// 6- uygulamyÃ½ sonlandÃ½r Ã§Ã½kÃ½Ã¾
 
 		Scanner veriScanner = new Scanner(System.in);
 
 		String username = null;
 		String password = null;
-		String islemler = " 1- biografi bilgisini göster\r\n" + "		 2- takipçi sayını göster\r\n"
-				+ "		 3- profil resminin linklini versin\r\n" + "		 4- takipçi listesini getirsin\r\n"
-				+ "		 5- takip ettiğim kişileri getir\r\n" + "		 6- uygulamyı sonlandır çıkış \r\n"
-				+ "İşlem seçiniz: ";
+		String islemler = " 1- biografi bilgisini gÃ¶ster\r\n" + "		 2- takipÃ§i sayÃ½nÃ½ gÃ¶ster\r\n"
+				+ "		 3- profil resminin linklini versin\r\n" + "		 4- takipÃ§i listesini getirsin\r\n"
+				+ "		 5- takip ettiÃ°im kiÃ¾ileri getir\r\n" + "		 6- uygulamyÃ½ sonlandÃ½r Ã§Ã½kÃ½Ã¾ \r\n"
+				+ "ÃÃ¾lem seÃ§iniz: ";
 
-		System.out.println("Instagram Projemize Hoşgelginiz...");
+		System.out.println("Instagram Projemize HoÃ¾gelginiz...");
 
-		System.out.print("Kullanıcı adınızı giriniz:");
+		System.out.print("KullanÃ½cÃ½ adÃ½nÃ½zÃ½ giriniz:");
 		username = veriScanner.nextLine();
 
-		System.out.print("şifreniniz giriniz:");
+		System.out.print("Ã¾ifreniniz giriniz:");
 		password = veriScanner.nextLine();
 
 		if (username.equals("omerjava") && password.equals("OmerJava+-*")) {
-			// giriş bilgileri doğru
-			System.out.println("Kullanıcı adınız ve şifreniz doğrudur...");
+			// giriÃ¾ bilgileri doÃ°ru
+			System.out.println("KullanÃ½cÃ½ adÃ½nÃ½z ve Ã¾ifreniz doÃ°rudur...");
 			Instagram4j instagram = Instagram4j.builder().username(username).password(password).build();
 			instagram.setup();
 
 			try {
 
-				// instagrama giriş yaptık ve kullanıcıya ail bilgileri erişiyoruz...
+				// instagrama giriÃ¾ yaptÃ½k ve kullanÃ½cÃ½ya ail bilgileri eriÃ¾iyoruz...
 				instagram.login();
 				InstagramSearchUsernameResult userResult = instagram
 						.sendRequest(new InstagramSearchUsernameRequest(username));
 
 				System.out.println("Biografi : " + userResult.getUser().biography);
-				// instagram üzerinden biografisine eriştik
+				// instagram Ã¼zerinden biografisine eriÃ¾tik
 
 				System.out.print(islemler);
 				String secim = veriScanner.nextLine();
 
 				if (secim.equals("6")) {
-					System.out.println("uygulama sonlandırılmıştır...");
+					System.out.println("uygulama sonlandÃ½rÃ½lmÃ½Ã¾tÃ½r...");
 				} else if (secim.equals("1")) {
 					System.out.println("Biografi: " + userResult.getUser().biography);
 				} else if (secim.equals("2")) {
-					System.out.println("Takipçi Sayısı: " + userResult.getUser().follower_count); //
-					System.out.println("Takip ettiklerimin Sayısı: " + userResult.getUser().following_count);
-					// System.out.println("Takipçi Şehirleri: "+userResult.getUser().city_name);
-					// System.out.println("Takipçi Asresleri:
+					System.out.println("TakipÃ§i SayÃ½sÃ½: " + userResult.getUser().follower_count); //
+					System.out.println("Takip ettiklerimin SayÃ½sÃ½: " + userResult.getUser().following_count);
+					// System.out.println("TakipÃ§i Ãehirleri: "+userResult.getUser().city_name);
+					// System.out.println("TakipÃ§i Asresleri:
 					// "+userResult.getUser().address_street);
 				} else if (secim.equals("3")) {
 					// profil resminin linkini alma
 					System.out.println("Profil resmimin linki: " + userResult.getUser().profile_pic_url);
 
 				} else if (secim.equals("4")) {
-					String takipciString = "1-mail gönder \n2-dosyaya yazdı \n3-console yazdır \n4-hiçbirşey yapma";
+					String takipciString = "1-mail gÃ¶nder \n2-dosyaya yazdÃ½ \n3-console yazdÃ½r \n4-hiÃ§birÃ¾ey yapma";
 					System.out.println(takipciString);
 					String takipcisecim = veriScanner.nextLine();
 
 					int sayac = 1;
 
-					// takipçi listesini getirsin
+					// takipÃ§i listesini getirsin
 					InstagramGetUserFollowersResult followerList = instagram
 							.sendRequest(new InstagramGetUserFollowersRequest(userResult.getUser().getPk()));
 
 					if (takipcisecim.equals("1")) {
-						// mail gönder
+						// mail gÃ¶nder
 						int i = 1;
 						StringBuffer buffer = new StringBuffer();
 						for (InstagramUserSummary follower : followerList.getUsers()) {
@@ -125,17 +125,17 @@ public class MainClass {
 					}
 
 					else if (takipcisecim.equals("2")) {
-						// dosyaya yazdır
+						// dosyaya yazdÃ½r
 						// List<InstagramUserSummary> users = followerList.getUsers();
 
 						List<FollowerClass> fwArraylist = new ArrayList<>();
 
 						for (InstagramUserSummary fw : followerList.getUsers()) {
-							// ful name and username and pk degerini alacağız
+							// ful name and username and pk degerini alacaÃ°Ã½z
 
 							FollowerClass fwsinif = new FollowerClass();
 
-							fwsinif.setPk(fw.getPk());// primery key dğeri
+							fwsinif.setPk(fw.getPk());// primery key dÃ°eri
 
 							fwsinif.setUsername(fw.getUsername());// username
 
@@ -156,7 +156,7 @@ public class MainClass {
 						DosyayaYazdir(file, fwArraylist);
 
 					} else if (takipcisecim.equals("3")) {
-						// console yazdır
+						// console yazdÃ½r
 						int i = 1;
 						for (InstagramUserSummary follower : followerList.getUsers()) {
 							System.out.println(i + ". " + follower.getPk() + " " + follower.getUsername() + " "
@@ -165,12 +165,12 @@ public class MainClass {
 						}
 
 					} else if (takipcisecim.equals("4")) {
-						// hiçbirşey yapma
-						System.out.println("yapılacak işleminiz bulunmamaktadır. işlem yapmak için tekrar deneyiniz.");
+						// hiÃ§birÃ¾ey yapma
+						System.out.println("yapÃ½lacak iÃ¾leminiz bulunmamaktadÃ½r. iÃ¾lem yapmak iÃ§in tekrar deneyiniz.");
 					} else {
-						System.out.println("lütfen 1 ile 4 arsında bir seçim yapınız...");
+						System.out.println("lÃ¼tfen 1 ile 4 arsÃ½nda bir seÃ§im yapÃ½nÃ½z...");
 					}
-					for (InstagramUserSummary follower : followerList.getUsers()) {// takipcilerimin fulnameini dönüyor
+					for (InstagramUserSummary follower : followerList.getUsers()) {// takipcilerimin fulnameini dÃ¶nÃ¼yor
 						System.out.println(sayac + ". :" + follower.full_name);
 						sayac++;
 
@@ -178,18 +178,18 @@ public class MainClass {
 				}
 
 				else if (secim.equals("5")) {
-					// takip ettiğim kişileri getir
+					// takip ettiÃ°im kiÃ¾ileri getir
 
 					InstagramGetUserFollowersRequest followingResult = Instagram
 							.sendRequest(new InstagramGetUserFollowersRequest(userResult.getUser().getPk()));
 
-					String takipciIslemler = "1-mail gönder " + "\n2-dosyaya yazdı " + "\n3-console yazdır "
-							+ "\n4-hiçbirşey yapma";
+					String takipciIslemler = "1-mail gÃ¶nder " + "\n2-dosyaya yazdÃ½ " + "\n3-console yazdÃ½r "
+							+ "\n4-hiÃ§birÃ¾ey yapma";
 					System.out.println(takipciIslemler);
 					String takipettiklerimsecim = veriScanner.nextLine();
 					InstagramGetUserFollowersResult followerList;
 					if (takipettiklerimsecim.equals("1")) {
-						// mail gönder
+						// mail gÃ¶nder
 						int i = 1;
 						StringBuffer buffer = new StringBuffer();
 
@@ -199,10 +199,10 @@ public class MainClass {
 							i++;
 
 						}
-						MailGonder("omeraydoganjava@gmail.com", buffer.toString());// mail gönderdik
+						MailGonder("omeraydoganjava@gmail.com", buffer.toString());// mail gÃ¶nderdik
 					} else if (takipettiklerimsecim.equals("2")) {
 
-						// dosya yazdırma
+						// dosya yazdÃ½rma
 
 						List<Following> followings = new ArrayList<Following>();
 						for (InstagramUserSummary fw : followingList.getUser()) {
@@ -230,12 +230,12 @@ public class MainClass {
 							i++;
 						}
 						
-						// console yazdır
+						// console yazdÃ½r
 					} else if (takipettiklerimsecim.equals("4")) {
-						// hiçbirşey yapma
-						System.out.println("seçim yapılmadı işlem yapılmaz");
+						// hiÃ§birÃ¾ey yapma
+						System.out.println("seÃ§im yapÃ½lmadÃ½ iÃ¾lem yapÃ½lmaz");
 					} else {
-						System.out.println("Hatalı giriş yaptınız lütfeen 1 ile 4 arasında değer girişi yapınız...");
+						System.out.println("HatalÃ½ giriÃ¾ yaptÃ½nÃ½z lÃ¼tfeen 1 ile 4 arasÃ½nda deÃ°er giriÃ¾i yapÃ½nÃ½z...");
 					}
 				}
 
@@ -247,17 +247,17 @@ public class MainClass {
 			}
 
 		} else {
-			System.out.println("kullanıcı adınız veya şifreniz yanlıştır...");
+			System.out.println("kullanÃ½cÃ½ adÃ½nÃ½z veya Ã¾ifreniz yanlÃ½Ã¾tÃ½r...");
 		}
 
 	}
 
-	public static void DosyayaYazdir(File file, List<FollowerClass> followers) // dosyayazdır adında metot
-																				// tanımlıyoruz...
+	public static void DosyayaYazdir(File file, List<FollowerClass> followers) // dosyayazdÃ½r adÃ½nda metot
+																				// tanÃ½mlÃ½yoruz...
 	{
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
 			out.writeObject(followers);
-			System.out.println("takipçi listesi başarılı bir şekilde dosyaya yazdırıldı...");
+			System.out.println("takipÃ§i listesi baÃ¾arÃ½lÃ½ bir Ã¾ekilde dosyaya yazdÃ½rÃ½ldÃ½...");
 		} catch (FileNotFoundException e) {
 			System.out.println("hata : " + e.getMessage());
 		} catch (IOException e) {
@@ -267,8 +267,8 @@ public class MainClass {
 	}
 
 	public static void MailGonder(String to, String icerik) {
-		String fromEmail = "omeraydoganjava@gmail.com";
-		String fromPassword = "Java3427+-*";
+		String fromEmail = "user maile";
+		String fromPassword = "user password";
 
 		Properties properties = new Properties();
 
@@ -296,19 +296,19 @@ public class MainClass {
 			message.setText(icerik);
 
 			Transport.send(message);
-			System.out.println("mail başarılı bir şekide gönderildi...");
+			System.out.println("mail baÃ¾arÃ½lÃ½ bir Ã¾ekide gÃ¶nderildi...");
 
 		} catch (Exception e) {
-			System.out.println("mail gönderirken hata oluştu: " + e);
+			System.out.println("mail gÃ¶nderirken hata oluÃ¾tu: " + e);
 		}
 	}
 
-	public static void WriteFollowingToFile(File file, List<Following> following) // dosyayazdır adında metot
-	// tanımlıyoruz...
+	public static void WriteFollowingToFile(File file, List<Following> following) // dosyayazdÃ½r adÃ½nda metot
+	// tanÃ½mlÃ½yoruz...
 	{
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
 			out.writeObject(following);
-			System.out.println("takipçi listesi başarılı bir şekilde dosyaya yazdırıldı...");
+			System.out.println("takipÃ§i listesi baÃ¾arÃ½lÃ½ bir Ã¾ekilde dosyaya yazdÃ½rÃ½ldÃ½...");
 		} catch (FileNotFoundException e) {
 			System.out.println("hata : " + e.getMessage());
 		} catch (IOException e) {
